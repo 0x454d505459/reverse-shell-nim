@@ -27,7 +27,7 @@ If you want to compile the reverse shell by yourself:
 - [ ] Screenshot tool
 - [ ] Webcam snaper
 - [ ] Keylogger
-- [ ] Remote imputs
+- [ ] Remote inputs
 
 ## Disclaimer
 This tool was made for educationnal purpose **ONLY**; I will not take the responsabilities of what you do witih this software.
