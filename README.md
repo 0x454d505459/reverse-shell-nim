@@ -21,13 +21,15 @@ If you want to compile the reverse shell by yourself:
 	+ Open any link into the default victim browser
 - sys-infos
 	+ Return the OS, cpu architecture and the IP of the victim
+- write
+	+ Write the given string on the target
 	
 
 ## May be added in the future
 - [ ] Screenshot tool
 - [ ] Webcam snaper
 - [ ] Keylogger
-- [ ] Remote inputs
+- [x] Remote imputs (Need help for windows)
 
 ## Disclaimer
 This tool was made for educationnal purpose **ONLY**; I will not take the responsabilities of what you do witih this software.
