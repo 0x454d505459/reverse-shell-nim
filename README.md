@@ -23,5 +23,11 @@ If you want to compile the reverse shell by yourself:
 	+ Return the OS, cpu architecture and the IP of the victim
 	
 
+## May be added in the future
+- [ ] Screenshot tool
+- [ ] Webcam snaper
+- [ ] Keylogger
+- [ ] Remote imputs
+
 ## Disclaimer
-This tool was made for educationnal purpose **ONLY**; I will not take the responsabilities of what you do witih this sofware.
+This tool was made for educationnal purpose **ONLY**; I will not take the responsabilities of what you do witih this software.
